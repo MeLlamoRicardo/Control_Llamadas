@@ -13,6 +13,7 @@ namespace Control_Llamadas
 {
     public partial class FormControl : Form
     {
+        Conexion  C = new Conexion();
         public FormControl()
         {
             InitializeComponent();
@@ -59,16 +60,19 @@ namespace Control_Llamadas
                 llamada.Usuario = this.txtNombreUsuario1.Text;
                 llamada.Descripcion = this.txtDescripcion.Text;
                 llamada.Observaciones = this.txtObservaciones.Text;
-                llamada.Fecha = this.dtpFecha.Value;
+                llamada.Fecha = this.dtpFecha.Text;
                 llamada.Hora_Inicio = this.lblTiempoInicio.Text;
                 llamada.Hora_Fin = this.lblTiempoFin.Text;
                 llamada.Total_Minutos = this.lblTotalMints.Text;
                 llamada.ID_Dia = 1;
+                
                 using (ModeloContainer conexion = new ModeloContainer())
                 {
-                    conexion.Llamadas.Add(llamada);
-                    conexion.SaveChanges();
-                    MessageBox.Show("Llamada Registrada");
+                    //conexion.Llamadas.Add(llamada);
+                    //conexion.SaveChanges();                    
+
+                    MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Total_Minutos, llamada.ID_Dia));
+                    //MessageBox.Show("Llamada Registrada");
                     RefrescarDatos();
                 }
             }
@@ -169,7 +173,7 @@ namespace Control_Llamadas
                     {
                         this.txtNombreUsuario2.Text = llamada.Usuario;
                         this.txtDescripcion2.Text = llamada.Descripcion;
-                        this.dtpFecha2.Value = llamada.Fecha;
+                        this.dtpFecha2.Text = llamada.Fecha;
                         this.txtTiempoInicio.Text = llamada.Hora_Inicio;
                         this.txtTiempoFin.Text = llamada.Hora_Fin;
                         this.txtTotalMints.Text = llamada.Total_Minutos;

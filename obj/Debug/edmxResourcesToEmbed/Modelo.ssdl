@@ -11,7 +11,7 @@
     <Property Name="Usuario" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Observaciones" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="Fecha" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Hora_Inicio" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Hora_Fin" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Total_Minutos" Type="nvarchar(max)" Nullable="false" />

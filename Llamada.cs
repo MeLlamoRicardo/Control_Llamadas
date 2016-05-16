@@ -18,7 +18,7 @@ namespace Control_Llamadas
         public string Usuario { get; set; }
         public string Descripcion { get; set; }
         public string Observaciones { get; set; }
-        public System.DateTime Fecha { get; set; }
+        public string Fecha { get; set; }
         public string Hora_Inicio { get; set; }
         public string Hora_Fin { get; set; }
         public string Total_Minutos { get; set; }
