@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Modelo" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="ModeloContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Llamadas" EntityType="Modelo.Llamada" />
+  </EntityContainer>
+  <EntityType Name="Llamada">
+    <Key>
+      <PropertyRef Name="ID_Llamada" />
+    </Key>
+    <Property Name="ID_Llamada" Type="Int32" Nullable="false" ConcurrencyMode="None" />
+    <Property Name="Usuario" Type="String" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" />
+    <Property Name="Observaciones" Type="String" Nullable="false" />
+    <Property Name="Fecha" Type="DateTime" Nullable="false" />
+    <Property Name="Hora_Inicio" Type="String" Nullable="false" />
+    <Property Name="Hora_Fin" Type="String" Nullable="false" />
+    <Property Name="Total_Minutos" Type="String" Nullable="false" />
+    <Property Name="ID_Dia" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

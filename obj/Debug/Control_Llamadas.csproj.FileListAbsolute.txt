@@ -1,0 +1,13 @@
+c:\users\hp\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\Control_Llamadas.exe.config
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\obj\Debug\Control_Llamadas.csprojResolveAssemblyReference.cache
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\obj\Debug\Control_Llamadas.FormControl.resources
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\obj\Debug\Control_Llamadas.Properties.Resources.resources
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\obj\Debug\Control_Llamadas.csproj.GenerateResource.Cache
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\Control_Llamadas.exe
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\Control_Llamadas.pdb
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\EntityFramework.dll
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\EntityFramework.xml
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\obj\Debug\Control_Llamadas.exe
+C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\obj\Debug\Control_Llamadas.pdb
