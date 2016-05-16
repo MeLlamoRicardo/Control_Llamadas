@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace Control_Llamadas
             InitializeComponent();
             dgvDatos.AutoGenerateColumns = false;
             this.RefrescarDatos();
+            this.btFinalizar.Enabled = false;
+            this.btInsertar.Enabled = false; 
         }
 
 
@@ -28,8 +31,6 @@ namespace Control_Llamadas
         {
 
         }
-
-
 
         private void RefrescarDatos()
         {
@@ -60,7 +61,7 @@ namespace Control_Llamadas
                 llamada.Usuario = this.txtNombreUsuario1.Text;
                 llamada.Descripcion = this.txtDescripcion.Text;
                 llamada.Observaciones = this.txtObservaciones.Text;
-                llamada.Fecha = this.dtpFecha.Text;
+                llamada.Fecha = this.dtpFecha.Value.ToString("g", CultureInfo.CreateSpecificCulture("es-MX"));
                 llamada.Hora_Inicio = this.lblTiempoInicio.Text;
                 llamada.Hora_Fin = this.lblTiempoFin.Text;
                 llamada.Total_Minutos = this.lblTotalMints.Text;
@@ -196,6 +197,16 @@ namespace Control_Llamadas
 
         private void btIniciar_Click(object sender, EventArgs e)
         {
+            this.lblTiempoInicio.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
+            this.btFinalizar.Enabled = true;
+            this.btIniciar.Enabled = false;
+        }
+
+        private void btFinalizar_Click(object sender, EventArgs e)
+        {
+            this.lblTiempoFin.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
+            this.btFinalizar.Enabled = false;
+            this.btInsertar.Enabled = true;
 
         }
 
@@ -232,5 +243,7 @@ namespace Control_Llamadas
         {
 
         }
+
+
     }
 }
