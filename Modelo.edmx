@@ -19,7 +19,7 @@
     <Property Name="Fecha" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Hora_Inicio" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Hora_Fin" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Total_Minutos" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tiempo_Total" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ID_Dia" Type="int" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
@@ -40,7 +40,7 @@
           <Property Name="Fecha" Type="String" Nullable="false" />
           <Property Name="Hora_Inicio" Type="String" Nullable="false" />
           <Property Name="Hora_Fin" Type="String" Nullable="false" />
-          <Property Name="Total_Minutos" Type="String" Nullable="false" />
+          <Property Name="Tiempo_Total" Type="String" Nullable="false" />
           <Property Name="ID_Dia" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
@@ -59,7 +59,7 @@
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
           <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
-          <ScalarProperty Name="Total_Minutos" ColumnName="Total_Minutos" />
+          <ScalarProperty Name="Tiempo_Total" ColumnName="Tiempo_Total" />
           <ScalarProperty Name="ID_Dia" ColumnName="ID_Dia" />
         </MappingFragment>
       </EntityTypeMapping>

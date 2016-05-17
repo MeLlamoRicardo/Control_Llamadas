@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/16/2016 02:10:39
+-- Date Created: 05/16/2016 21:20:14
 -- Generated from EDMX file: C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\Modelo.edmx
 -- --------------------------------------------------
 
@@ -39,7 +39,7 @@ CREATE TABLE [dbo].[Llamadas] (
     [Fecha] nvarchar(max)  NOT NULL,
     [Hora_Inicio] nvarchar(max)  NOT NULL,
     [Hora_Fin] nvarchar(max)  NOT NULL,
-    [Total_Minutos] nvarchar(max)  NOT NULL,
+    [Tiempo_Total] nvarchar(max)  NOT NULL,
     [ID_Dia] int  NOT NULL
 );
 GO

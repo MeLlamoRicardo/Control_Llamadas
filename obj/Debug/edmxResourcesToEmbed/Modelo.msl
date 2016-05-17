@@ -11,7 +11,7 @@
           <ScalarProperty Name="Fecha" ColumnName="Fecha" />
           <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
           <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
-          <ScalarProperty Name="Total_Minutos" ColumnName="Total_Minutos" />
+          <ScalarProperty Name="Tiempo_Total" ColumnName="Tiempo_Total" />
           <ScalarProperty Name="ID_Dia" ColumnName="ID_Dia" />
         </MappingFragment>
       </EntityTypeMapping>

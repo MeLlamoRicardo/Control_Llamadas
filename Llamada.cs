@@ -21,7 +21,7 @@ namespace Control_Llamadas
         public string Fecha { get; set; }
         public string Hora_Inicio { get; set; }
         public string Hora_Fin { get; set; }
-        public string Total_Minutos { get; set; }
+        public string Tiempo_Total { get; set; }
         public int ID_Dia { get; set; }
     }
 }

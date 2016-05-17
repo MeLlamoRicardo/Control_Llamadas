@@ -9,19 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
+using System.Diagnostics;
 
 namespace Control_Llamadas
 {
     public partial class FormControl : Form
     {
-        Conexion  C = new Conexion();
+        Conexion C = new Conexion();
+        int segundos, minutos, horas;
+
+
         public FormControl()
         {
             InitializeComponent();
             dgvDatos.AutoGenerateColumns = false;
             this.RefrescarDatos();
             this.btFinalizar.Enabled = false;
-            this.btInsertar.Enabled = false; 
+            this.btInsertar.Enabled = false;
         }
 
 
@@ -29,7 +34,7 @@ namespace Control_Llamadas
         //Métodos no Utilizados.
         private void FormControl_Load(object sender, EventArgs e)
         {
-
+            lblfecha.Text = DateTime.Today.ToString("D");
         }
 
         private void RefrescarDatos()
@@ -41,6 +46,25 @@ namespace Control_Llamadas
         }
 
         private void LimpiarCampos()
+        {
+            this.txtNombreUsuario.Text = string.Empty;
+            this.txtDescripcion.Text = string.Empty;
+            this.lblfecha.Text = DateTime.Today.ToString("D");
+            this.lblTiempoInicio.Text = "00:00:00";
+            this.lblTiempoFin.Text = "00:00:00";
+            this.lblTiempoTotal.Text = "00:00:00";
+            this.txtObservaciones.Text = string.Empty;
+            this.lblError.Text = string.Empty;
+            this.btIniciar.Enabled = true;
+            this.btFinalizar.Enabled = false;
+            this.btInsertar.Enabled = false;
+            this.segundos = 0;
+            this.minutos = 0;
+            this.horas = 0;
+            this.timerHoras.Stop();
+        }
+
+        private void LimpiarCampos2()
         {
             this.txtNombreUsuario2.Text = string.Empty;
             this.txtDescripcion2.Text = string.Empty;
@@ -55,55 +79,30 @@ namespace Control_Llamadas
         {
             if (ValidarCampos())
             {
-                
                 Llamada llamada = new Llamada();
                 llamada.ID_Llamada = 0;
-                llamada.Usuario = this.txtNombreUsuario1.Text;
+                llamada.Usuario = this.txtNombreUsuario.Text;
                 llamada.Descripcion = this.txtDescripcion.Text;
                 llamada.Observaciones = this.txtObservaciones.Text;
-                llamada.Fecha = this.dtpFecha.Value.ToString("g", CultureInfo.CreateSpecificCulture("es-MX"));
+                llamada.Fecha = this.lblfecha.Text;
+                //Value.ToString("g", CultureInfo.CreateSpecificCulture("es-MX"));
                 llamada.Hora_Inicio = this.lblTiempoInicio.Text;
                 llamada.Hora_Fin = this.lblTiempoFin.Text;
-                llamada.Total_Minutos = this.lblTotalMints.Text;
+                llamada.Tiempo_Total = this.lblTiempoTotal.Text;
                 llamada.ID_Dia = 1;
-                
+
                 using (ModeloContainer conexion = new ModeloContainer())
                 {
                     //conexion.Llamadas.Add(llamada);
                     //conexion.SaveChanges();                    
-
-                    MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Total_Minutos, llamada.ID_Dia));
+                    MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Tiempo_Total, llamada.ID_Dia));
                     //MessageBox.Show("Llamada Registrada");
                     RefrescarDatos();
+                    LimpiarCampos();
                 }
             }
 
         }
-
-        /*
-        private int ConsecutivoID()
-        {
-            int consecutivo = 0;
-            using (ModeloContainer conexion = new ModeloContainer())
-            {
-                //Array miLista = conexion.Llamadas.ToArray();
-                //int p = miLista.GetLength();
-                ArrayList miArray = new <Llamada>ArrayList();
-                miArray = conexion.Llamadas.ToArray();
-                List llamada = conexion.Llamadas.ToList(); //SqlQuery("SELECT MAX(ID_Llamada)");
-
-                if (llamada == null)
-                {
-                    consecutivo = 1;
-                }
-                else
-                {
-                    consecutivo = llamada.ID_Llamada + 1; 
-                }
-            }
-            return consecutivo;
-        }
-        */ 
 
         private int ConsecutivoDia()
         {
@@ -127,7 +126,7 @@ namespace Control_Llamadas
                 if (string.IsNullOrEmpty(this.txtIDllamada.Text))
                 {
                     MessageBox.Show("Ingrese el ID de la la llamada a eliminar.");
-                    LimpiarCampos();
+                    LimpiarCampos2();
                 }
                 else
                 {
@@ -136,14 +135,14 @@ namespace Control_Llamadas
                     if (llamada == null)
                     {
                         MessageBox.Show("No existe llamada con el ID introducido.");
-                        LimpiarCampos();
+                        LimpiarCampos2();
                     }
                     else
                     {
                         conexion.Llamadas.Remove(llamada);
                         conexion.SaveChanges();
                         MessageBox.Show("La llamada ha sido eliminada con éxito.");
-                        LimpiarCampos();
+                        LimpiarCampos2();
                         RefrescarDatos();
                     }
                 }
@@ -159,7 +158,7 @@ namespace Control_Llamadas
                 if (string.IsNullOrEmpty(this.txtIDllamada.Text))
                 {
                     MessageBox.Show("Ingrese el ID de la la llamada a consultar");
-                    LimpiarCampos();
+                    LimpiarCampos2();
                 }
                 else
                 {
@@ -168,7 +167,7 @@ namespace Control_Llamadas
                     if (llamada == null)
                     {
                         MessageBox.Show("No existe la llamada con el ID introducido.");
-                        LimpiarCampos();
+                        LimpiarCampos2();
                     }
                     else
                     {
@@ -177,7 +176,7 @@ namespace Control_Llamadas
                         this.dtpFecha2.Text = llamada.Fecha;
                         this.txtTiempoInicio.Text = llamada.Hora_Inicio;
                         this.txtTiempoFin.Text = llamada.Hora_Fin;
-                        this.txtTotalMints.Text = llamada.Total_Minutos;
+                        this.txtTotalMints.Text = llamada.Tiempo_Total;
                         this.txtObservaciones2.Text = llamada.Observaciones;
                     }
                 }
@@ -198,6 +197,7 @@ namespace Control_Llamadas
         private void btIniciar_Click(object sender, EventArgs e)
         {
             this.lblTiempoInicio.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
+            timerHoras.Start();
             this.btFinalizar.Enabled = true;
             this.btIniciar.Enabled = false;
         }
@@ -207,16 +207,29 @@ namespace Control_Llamadas
             this.lblTiempoFin.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = true;
-
+            timerHoras.Stop();
         }
 
         private bool ValidarCampos()
         {
-            if (string.IsNullOrEmpty(this.txtNombreUsuario1.Text))
+            if (string.IsNullOrEmpty(this.txtNombreUsuario.Text) && string.IsNullOrEmpty(this.txtDescripcion.Text))
             {
-                this.txtNombreUsuario1.Text = "Ingrese el nombre de la persona que llama.";
+                this.lblError.Text = "Ingrese el nombre de la persona que llama y una descripción.";
                 return false;
             }
+            else
+                if (string.IsNullOrEmpty(this.txtNombreUsuario.Text))
+            {
+                this.lblError.Text = "Ingrese el nombre de la persona que llama ";
+                return false;
+            }
+            else
+                if (string.IsNullOrEmpty(this.txtDescripcion.Text))
+            {
+                this.lblError.Text = "Ingrese una descripción a la llamada.";
+                return false;
+            }
+            /*
             if (string.IsNullOrEmpty(this.txtDescripcion.Text))
             {
                 this.txtDescripcion.Text = "Ingrese una descripción a la llamada.";
@@ -225,8 +238,8 @@ namespace Control_Llamadas
             if (string.IsNullOrEmpty(this.txtObservaciones.Text))
             {
                 this.txtObservaciones.Text = "Sin Observaciones";
-            }
-            return true; 
+            }*/
+            return true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -239,11 +252,41 @@ namespace Control_Llamadas
 
         }
 
+        private void txtNombreUsuario1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTiempoTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            this.LimpiarCampos();
+        }
+
         private void tpAgregar_Click(object sender, EventArgs e)
         {
 
         }
 
+        private void timerMints_Tick(object sender, EventArgs e)
+        {
+            if (minutos == 60)
+            {
+                horas += 1;
+                minutos = 0;
+            }
+            if (segundos == 60)
+            {
+                minutos += 1;
+                segundos = 0;
 
+            }
+            segundos += 1;
+            lblTiempoTotal.Text = horas.ToString() + ":" + minutos.ToString() + ":" + segundos.ToString();
+        }
     }
 }

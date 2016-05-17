@@ -32,12 +32,12 @@ namespace Control_Llamadas
 
 
 
-        public string insertar( string usuario, string descripcion, string observaciones, string fecha, string horaInicio, string horaFin, string totalMints, int idDia)
+        public string insertar( string usuario, string descripcion, string observaciones, string fecha, string horaInicio, string horaFin, string tiempoTotal, int idDia)
         {
             string salida = "Si se insertó";
             try
             {
-                cmd = new SqlCommand("Insert into Llamadas(Usuario,Descripcion,Observaciones,Fecha,Hora_Inicio,Hora_Fin,Total_Minutos,ID_Dia) values('"+usuario+ "','" + descripcion+ "','" + observaciones + "','" + fecha + "' ,'" + horaInicio + "', '" + horaFin + "','" + totalMints + "'," + idDia+" )", cn);
+                cmd = new SqlCommand("Insert into Llamadas(Usuario,Descripcion,Observaciones,Fecha,Hora_Inicio,Hora_Fin,Tiempo_Total,ID_Dia) values('"+usuario+ "','" + descripcion+ "','" + observaciones + "','" + fecha + "' ,'" + horaInicio + "', '" + horaFin + "','" + tiempoTotal + "'," + idDia+" )", cn);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

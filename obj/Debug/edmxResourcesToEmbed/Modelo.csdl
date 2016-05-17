@@ -14,7 +14,7 @@
     <Property Name="Fecha" Type="String" Nullable="false" />
     <Property Name="Hora_Inicio" Type="String" Nullable="false" />
     <Property Name="Hora_Fin" Type="String" Nullable="false" />
-    <Property Name="Total_Minutos" Type="String" Nullable="false" />
+    <Property Name="Tiempo_Total" Type="String" Nullable="false" />
     <Property Name="ID_Dia" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>
