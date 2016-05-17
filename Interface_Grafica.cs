@@ -27,6 +27,7 @@ namespace Control_Llamadas
             this.RefrescarDatos();
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = false;
+            //dgvDatos.EditMode = false;
         }
 
 
@@ -265,6 +266,96 @@ namespace Control_Llamadas
         private void btLimpiarCampos_Click(object sender, EventArgs e)
         {
             this.LimpiarCampos();
+        }
+
+        private void txtTotalMints_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtConsecutivo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombreUsuario2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblConsecutivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTiempoInicio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNombreUsuario2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDescripcion2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpFecha2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFecha2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblInicio2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFin2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTotal2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtObservaciones2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescripcion2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void tpAgregar_Click(object sender, EventArgs e)

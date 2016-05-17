@@ -72,18 +72,25 @@
             this.timerHoras = new System.Windows.Forms.Timer(this.components);
             this.lblfecha = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblError = new System.Windows.Forms.Label();
+            this.btLimpiarCampos = new System.Windows.Forms.Button();
+            this.lblConsecutivo = new System.Windows.Forms.Label();
+            this.txtConsecutivo = new System.Windows.Forms.TextBox();
+            this.lblLlamada = new System.Windows.Forms.Label();
+            this.lblLlamadaID = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.ID_Llamada = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblError = new System.Windows.Forms.Label();
-            this.btLimpiarCampos = new System.Windows.Forms.Button();
+            this.btLimpiarCampos2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.tcPaginas.SuspendLayout();
             this.tpAgregar.SuspendLayout();
             this.tpBuscar.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblNombreUsuario
@@ -196,7 +203,7 @@
             // 
             // btModificar
             // 
-            this.btModificar.Location = new System.Drawing.Point(479, 206);
+            this.btModificar.Location = new System.Drawing.Point(387, 6);
             this.btModificar.Name = "btModificar";
             this.btModificar.Size = new System.Drawing.Size(75, 25);
             this.btModificar.TabIndex = 12;
@@ -226,6 +233,10 @@
             // 
             // dgvDatos
             // 
+            this.dgvDatos.AllowUserToAddRows = false;
+            this.dgvDatos.AllowUserToDeleteRows = false;
+            this.dgvDatos.AllowUserToResizeColumns = false;
+            this.dgvDatos.AllowUserToResizeRows = false;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_Llamada,
@@ -233,9 +244,9 @@
             this.Descripcion,
             this.Fecha,
             this.ID_Dia});
-            this.dgvDatos.Location = new System.Drawing.Point(10, 53);
+            this.dgvDatos.Location = new System.Drawing.Point(16, 53);
             this.dgvDatos.Name = "dgvDatos";
-            this.dgvDatos.Size = new System.Drawing.Size(544, 140);
+            this.dgvDatos.Size = new System.Drawing.Size(537, 140);
             this.dgvDatos.TabIndex = 17;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
@@ -325,30 +336,16 @@
             // 
             // tpBuscar
             // 
+            this.tpBuscar.Controls.Add(this.panel2);
             this.tpBuscar.Controls.Add(this.txtIDllamada);
             this.tpBuscar.Controls.Add(this.btEliminar);
-            this.tpBuscar.Controls.Add(this.btModificar);
             this.tpBuscar.Controls.Add(this.lblIDllamada);
-            this.tpBuscar.Controls.Add(this.txtTotalMints);
-            this.tpBuscar.Controls.Add(this.txtTiempoFin);
-            this.tpBuscar.Controls.Add(this.txtTiempoInicio);
-            this.tpBuscar.Controls.Add(this.lblNombreUsuario2);
-            this.tpBuscar.Controls.Add(this.lblDescripcion2);
-            this.tpBuscar.Controls.Add(this.dtpFecha2);
-            this.tpBuscar.Controls.Add(this.label5);
-            this.tpBuscar.Controls.Add(this.lblFecha2);
-            this.tpBuscar.Controls.Add(this.lblInicio2);
-            this.tpBuscar.Controls.Add(this.lblFin2);
-            this.tpBuscar.Controls.Add(this.lblTotal2);
-            this.tpBuscar.Controls.Add(this.txtNombreUsuario2);
-            this.tpBuscar.Controls.Add(this.txtObservaciones2);
-            this.tpBuscar.Controls.Add(this.txtDescripcion2);
             this.tpBuscar.Controls.Add(this.dgvDatos);
             this.tpBuscar.Controls.Add(this.btBuscar);
             this.tpBuscar.Location = new System.Drawing.Point(4, 22);
             this.tpBuscar.Name = "tpBuscar";
             this.tpBuscar.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBuscar.Size = new System.Drawing.Size(564, 462);
+            this.tpBuscar.Size = new System.Drawing.Size(564, 481);
             this.tpBuscar.TabIndex = 1;
             this.tpBuscar.Text = "Buscar";
             this.tpBuscar.UseVisualStyleBackColor = true;
@@ -371,118 +368,131 @@
             // 
             // txtTotalMints
             // 
-            this.txtTotalMints.Location = new System.Drawing.Point(434, 413);
+            this.txtTotalMints.Location = new System.Drawing.Point(430, 208);
             this.txtTotalMints.Name = "txtTotalMints";
-            this.txtTotalMints.Size = new System.Drawing.Size(100, 20);
+            this.txtTotalMints.Size = new System.Drawing.Size(107, 20);
             this.txtTotalMints.TabIndex = 35;
+            this.txtTotalMints.TextChanged += new System.EventHandler(this.txtTotalMints_TextChanged);
             // 
             // txtTiempoFin
             // 
-            this.txtTiempoFin.Location = new System.Drawing.Point(434, 367);
+            this.txtTiempoFin.Location = new System.Drawing.Point(430, 182);
             this.txtTiempoFin.Name = "txtTiempoFin";
-            this.txtTiempoFin.Size = new System.Drawing.Size(100, 20);
+            this.txtTiempoFin.Size = new System.Drawing.Size(107, 20);
             this.txtTiempoFin.TabIndex = 34;
             this.txtTiempoFin.TextChanged += new System.EventHandler(this.txtTiempoFin_TextChanged);
             // 
             // txtTiempoInicio
             // 
-            this.txtTiempoInicio.Location = new System.Drawing.Point(434, 325);
+            this.txtTiempoInicio.Location = new System.Drawing.Point(430, 156);
             this.txtTiempoInicio.Name = "txtTiempoInicio";
-            this.txtTiempoInicio.Size = new System.Drawing.Size(100, 20);
+            this.txtTiempoInicio.Size = new System.Drawing.Size(107, 20);
             this.txtTiempoInicio.TabIndex = 33;
+            this.txtTiempoInicio.TextChanged += new System.EventHandler(this.txtTiempoInicio_TextChanged);
             // 
             // lblNombreUsuario2
             // 
             this.lblNombreUsuario2.AutoSize = true;
-            this.lblNombreUsuario2.Location = new System.Drawing.Point(7, 211);
+            this.lblNombreUsuario2.Location = new System.Drawing.Point(9, 42);
             this.lblNombreUsuario2.Name = "lblNombreUsuario2";
             this.lblNombreUsuario2.Size = new System.Drawing.Size(107, 13);
             this.lblNombreUsuario2.TabIndex = 22;
             this.lblNombreUsuario2.Text = "- Nombre de Usuario:";
+            this.lblNombreUsuario2.Click += new System.EventHandler(this.lblNombreUsuario2_Click);
             // 
             // lblDescripcion2
             // 
             this.lblDescripcion2.AutoSize = true;
-            this.lblDescripcion2.Location = new System.Drawing.Point(7, 238);
+            this.lblDescripcion2.Location = new System.Drawing.Point(9, 69);
             this.lblDescripcion2.Name = "lblDescripcion2";
             this.lblDescripcion2.Size = new System.Drawing.Size(72, 13);
             this.lblDescripcion2.TabIndex = 23;
             this.lblDescripcion2.Text = "- Descripción:";
+            this.lblDescripcion2.Click += new System.EventHandler(this.lblDescripcion2_Click);
             // 
             // dtpFecha2
             // 
-            this.dtpFecha2.Location = new System.Drawing.Point(120, 272);
+            this.dtpFecha2.Location = new System.Drawing.Point(122, 103);
             this.dtpFecha2.Name = "dtpFecha2";
             this.dtpFecha2.Size = new System.Drawing.Size(219, 20);
             this.dtpFecha2.TabIndex = 32;
             this.dtpFecha2.Value = new System.DateTime(2016, 5, 14, 17, 49, 46, 0);
+            this.dtpFecha2.ValueChanged += new System.EventHandler(this.dtpFecha2_ValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 306);
+            this.label5.Location = new System.Drawing.Point(9, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 13);
             this.label5.TabIndex = 24;
             this.label5.Text = "- Observaciones:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // lblFecha2
             // 
             this.lblFecha2.AutoSize = true;
-            this.lblFecha2.Location = new System.Drawing.Point(7, 276);
+            this.lblFecha2.Location = new System.Drawing.Point(9, 110);
             this.lblFecha2.Name = "lblFecha2";
             this.lblFecha2.Size = new System.Drawing.Size(46, 13);
             this.lblFecha2.TabIndex = 25;
             this.lblFecha2.Text = "- Fecha:";
+            this.lblFecha2.Click += new System.EventHandler(this.lblFecha2_Click);
             // 
             // lblInicio2
             // 
             this.lblInicio2.AutoSize = true;
-            this.lblInicio2.Location = new System.Drawing.Point(321, 329);
+            this.lblInicio2.Location = new System.Drawing.Point(317, 160);
             this.lblInicio2.Name = "lblInicio2";
             this.lblInicio2.Size = new System.Drawing.Size(82, 13);
             this.lblInicio2.TabIndex = 26;
             this.lblInicio2.Text = "- Hora de Inicio:";
+            this.lblInicio2.Click += new System.EventHandler(this.lblInicio2_Click);
             // 
             // lblFin2
             // 
             this.lblFin2.AutoSize = true;
-            this.lblFin2.Location = new System.Drawing.Point(321, 371);
+            this.lblFin2.Location = new System.Drawing.Point(317, 185);
             this.lblFin2.Name = "lblFin2";
             this.lblFin2.Size = new System.Drawing.Size(71, 13);
             this.lblFin2.TabIndex = 27;
             this.lblFin2.Text = "- Hora de Fin:";
+            this.lblFin2.Click += new System.EventHandler(this.lblFin2_Click);
             // 
             // lblTotal2
             // 
             this.lblTotal2.AutoSize = true;
-            this.lblTotal2.Location = new System.Drawing.Point(321, 413);
+            this.lblTotal2.Location = new System.Drawing.Point(317, 211);
             this.lblTotal2.Name = "lblTotal2";
             this.lblTotal2.Size = new System.Drawing.Size(95, 13);
             this.lblTotal2.TabIndex = 28;
             this.lblTotal2.Text = "- Total de Minutos:";
+            this.lblTotal2.Click += new System.EventHandler(this.lblTotal2_Click);
             // 
             // txtNombreUsuario2
             // 
-            this.txtNombreUsuario2.Location = new System.Drawing.Point(120, 211);
+            this.txtNombreUsuario2.Location = new System.Drawing.Point(122, 42);
             this.txtNombreUsuario2.Name = "txtNombreUsuario2";
-            this.txtNombreUsuario2.Size = new System.Drawing.Size(353, 20);
+            this.txtNombreUsuario2.Size = new System.Drawing.Size(415, 20);
             this.txtNombreUsuario2.TabIndex = 29;
+            this.txtNombreUsuario2.TextChanged += new System.EventHandler(this.txtNombreUsuario2_TextChanged);
             // 
             // txtObservaciones2
             // 
-            this.txtObservaciones2.Location = new System.Drawing.Point(10, 326);
+            this.txtObservaciones2.Location = new System.Drawing.Point(12, 157);
             this.txtObservaciones2.Multiline = true;
             this.txtObservaciones2.Name = "txtObservaciones2";
-            this.txtObservaciones2.Size = new System.Drawing.Size(305, 107);
+            this.txtObservaciones2.Size = new System.Drawing.Size(299, 107);
             this.txtObservaciones2.TabIndex = 31;
+            this.txtObservaciones2.TextChanged += new System.EventHandler(this.txtObservaciones2_TextChanged);
             // 
             // txtDescripcion2
             // 
-            this.txtDescripcion2.Location = new System.Drawing.Point(120, 238);
+            this.txtDescripcion2.Location = new System.Drawing.Point(122, 69);
             this.txtDescripcion2.Name = "txtDescripcion2";
-            this.txtDescripcion2.Size = new System.Drawing.Size(434, 20);
+            this.txtDescripcion2.Size = new System.Drawing.Size(415, 20);
             this.txtDescripcion2.TabIndex = 30;
+            this.txtDescripcion2.TextChanged += new System.EventHandler(this.txtDescripcion2_TextChanged);
             // 
             // tpReportes
             // 
@@ -526,6 +536,94 @@
             this.panel1.Size = new System.Drawing.Size(500, 155);
             this.panel1.TabIndex = 23;
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(48, 247);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(0, 20);
+            this.lblError.TabIndex = 24;
+            // 
+            // btLimpiarCampos
+            // 
+            this.btLimpiarCampos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btLimpiarCampos.Location = new System.Drawing.Point(427, 444);
+            this.btLimpiarCampos.Name = "btLimpiarCampos";
+            this.btLimpiarCampos.Size = new System.Drawing.Size(131, 31);
+            this.btLimpiarCampos.TabIndex = 25;
+            this.btLimpiarCampos.Text = "Limpiar Campos";
+            this.btLimpiarCampos.UseVisualStyleBackColor = true;
+            this.btLimpiarCampos.Click += new System.EventHandler(this.btLimpiarCampos_Click);
+            // 
+            // lblConsecutivo
+            // 
+            this.lblConsecutivo.AutoSize = true;
+            this.lblConsecutivo.Location = new System.Drawing.Point(319, 237);
+            this.lblConsecutivo.Name = "lblConsecutivo";
+            this.lblConsecutivo.Size = new System.Drawing.Size(75, 13);
+            this.lblConsecutivo.TabIndex = 38;
+            this.lblConsecutivo.Text = "- Consecutivo:";
+            this.lblConsecutivo.Click += new System.EventHandler(this.lblConsecutivo_Click);
+            // 
+            // txtConsecutivo
+            // 
+            this.txtConsecutivo.Location = new System.Drawing.Point(430, 234);
+            this.txtConsecutivo.Name = "txtConsecutivo";
+            this.txtConsecutivo.Size = new System.Drawing.Size(107, 20);
+            this.txtConsecutivo.TabIndex = 39;
+            this.txtConsecutivo.TextChanged += new System.EventHandler(this.txtConsecutivo_TextChanged);
+            // 
+            // lblLlamada
+            // 
+            this.lblLlamada.AutoSize = true;
+            this.lblLlamada.Location = new System.Drawing.Point(9, 12);
+            this.lblLlamada.Name = "lblLlamada";
+            this.lblLlamada.Size = new System.Drawing.Size(81, 13);
+            this.lblLlamada.TabIndex = 40;
+            this.lblLlamada.Text = "- ID de llamada:";
+            this.lblLlamada.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // lblLlamadaID
+            // 
+            this.lblLlamadaID.AutoSize = true;
+            this.lblLlamadaID.Location = new System.Drawing.Point(119, 12);
+            this.lblLlamadaID.Name = "lblLlamadaID";
+            this.lblLlamadaID.Size = new System.Drawing.Size(119, 13);
+            this.lblLlamadaID.TabIndex = 41;
+            this.lblLlamadaID.Text = "Identificador de llamada";
+            this.lblLlamadaID.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btLimpiarCampos2);
+            this.panel2.Controls.Add(this.lblLlamada);
+            this.panel2.Controls.Add(this.lblLlamadaID);
+            this.panel2.Controls.Add(this.txtDescripcion2);
+            this.panel2.Controls.Add(this.txtObservaciones2);
+            this.panel2.Controls.Add(this.txtConsecutivo);
+            this.panel2.Controls.Add(this.txtNombreUsuario2);
+            this.panel2.Controls.Add(this.lblConsecutivo);
+            this.panel2.Controls.Add(this.lblTotal2);
+            this.panel2.Controls.Add(this.lblFin2);
+            this.panel2.Controls.Add(this.lblInicio2);
+            this.panel2.Controls.Add(this.btModificar);
+            this.panel2.Controls.Add(this.lblFecha2);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.txtTotalMints);
+            this.panel2.Controls.Add(this.dtpFecha2);
+            this.panel2.Controls.Add(this.txtTiempoFin);
+            this.panel2.Controls.Add(this.lblDescripcion2);
+            this.panel2.Controls.Add(this.txtTiempoInicio);
+            this.panel2.Controls.Add(this.lblNombreUsuario2);
+            this.panel2.Location = new System.Drawing.Point(10, 199);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(548, 276);
+            this.panel2.TabIndex = 42;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
             // ID_Llamada
             // 
             this.ID_Llamada.DataPropertyName = "ID_Llamada";
@@ -563,28 +661,16 @@
             this.ID_Dia.HeaderText = "Consecutivo";
             this.ID_Dia.Name = "ID_Dia";
             this.ID_Dia.ReadOnly = true;
-            this.ID_Dia.Width = 90;
+            this.ID_Dia.Width = 85;
             // 
-            // lblError
+            // btLimpiarCampos2
             // 
-            this.lblError.AutoSize = true;
-            this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(48, 247);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(0, 20);
-            this.lblError.TabIndex = 24;
-            // 
-            // btLimpiarCampos
-            // 
-            this.btLimpiarCampos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btLimpiarCampos.Location = new System.Drawing.Point(427, 444);
-            this.btLimpiarCampos.Name = "btLimpiarCampos";
-            this.btLimpiarCampos.Size = new System.Drawing.Size(131, 31);
-            this.btLimpiarCampos.TabIndex = 25;
-            this.btLimpiarCampos.Text = "Limpiar Campos";
-            this.btLimpiarCampos.UseVisualStyleBackColor = true;
-            this.btLimpiarCampos.Click += new System.EventHandler(this.btLimpiarCampos_Click);
+            this.btLimpiarCampos2.Location = new System.Drawing.Point(468, 6);
+            this.btLimpiarCampos2.Name = "btLimpiarCampos2";
+            this.btLimpiarCampos2.Size = new System.Drawing.Size(75, 25);
+            this.btLimpiarCampos2.TabIndex = 42;
+            this.btLimpiarCampos2.Text = "Limpiar";
+            this.btLimpiarCampos2.UseVisualStyleBackColor = true;
             // 
             // FormControl
             // 
@@ -592,6 +678,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 531);
             this.Controls.Add(this.tcPaginas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(607, 570);
+            this.MinimumSize = new System.Drawing.Size(607, 570);
             this.Name = "FormControl";
             this.Text = "Control de Llamadas";
             this.Load += new System.EventHandler(this.FormControl_Load);
@@ -603,6 +692,8 @@
             this.tpBuscar.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -652,13 +743,19 @@
         private System.Windows.Forms.Timer timerHoras;
         private System.Windows.Forms.Label lblfecha;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Button btLimpiarCampos;
+        private System.Windows.Forms.TextBox txtConsecutivo;
+        private System.Windows.Forms.Label lblConsecutivo;
+        private System.Windows.Forms.Label lblLlamadaID;
+        private System.Windows.Forms.Label lblLlamada;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Llamada;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Dia;
-        private System.Windows.Forms.Label lblError;
-        private System.Windows.Forms.Button btLimpiarCampos;
+        private System.Windows.Forms.Button btLimpiarCampos2;
     }
 }
 
