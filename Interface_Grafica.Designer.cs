@@ -92,12 +92,32 @@
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblReporte = new System.Windows.Forms.Label();
+            this.dtpFecha3 = new System.Windows.Forms.DateTimePicker();
+            this.btReporte = new System.Windows.Forms.Button();
+            this.dgvReportes = new System.Windows.Forms.DataGridView();
+            this.lblError3 = new System.Windows.Forms.Label();
+            this.control_Llamadas_DataSet = new Control_Llamadas.Control_Llamadas_DataSet();
+            this.llamadasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.llamadasTableAdapter = new Control_Llamadas.Control_Llamadas_DataSetTableAdapters.LlamadasTableAdapter();
+            this.iDLlamadaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.horaInicioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.horaFinDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempoTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.tcPaginas.SuspendLayout();
             this.tpAgregar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tpBuscar.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tpReportes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReportes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.control_Llamadas_DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.llamadasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombreUsuario
@@ -253,6 +273,8 @@
             this.ID_Dia});
             this.dgvDatos.Location = new System.Drawing.Point(10, 35);
             this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(548, 140);
             this.dgvDatos.TabIndex = 17;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
@@ -630,6 +652,11 @@
             // 
             // tpReportes
             // 
+            this.tpReportes.Controls.Add(this.lblError3);
+            this.tpReportes.Controls.Add(this.dgvReportes);
+            this.tpReportes.Controls.Add(this.btReporte);
+            this.tpReportes.Controls.Add(this.dtpFecha3);
+            this.tpReportes.Controls.Add(this.lblReporte);
             this.tpReportes.Location = new System.Drawing.Point(4, 22);
             this.tpReportes.Name = "tpReportes";
             this.tpReportes.Size = new System.Drawing.Size(564, 490);
@@ -692,6 +719,139 @@
             this.ID_Dia.ReadOnly = true;
             this.ID_Dia.Width = 70;
             // 
+            // lblReporte
+            // 
+            this.lblReporte.AutoSize = true;
+            this.lblReporte.Location = new System.Drawing.Point(3, 15);
+            this.lblReporte.Name = "lblReporte";
+            this.lblReporte.Size = new System.Drawing.Size(230, 13);
+            this.lblReporte.TabIndex = 0;
+            this.lblReporte.Text = "Seleccione el día para el cual desea el reporte ";
+            // 
+            // dtpFecha3
+            // 
+            this.dtpFecha3.Location = new System.Drawing.Point(260, 15);
+            this.dtpFecha3.Name = "dtpFecha3";
+            this.dtpFecha3.Size = new System.Drawing.Size(200, 20);
+            this.dtpFecha3.TabIndex = 1;
+            // 
+            // btReporte
+            // 
+            this.btReporte.Location = new System.Drawing.Point(486, 15);
+            this.btReporte.Name = "btReporte";
+            this.btReporte.Size = new System.Drawing.Size(75, 20);
+            this.btReporte.TabIndex = 2;
+            this.btReporte.Text = "Dar Reporte";
+            this.btReporte.UseVisualStyleBackColor = true;
+            // 
+            // dgvReportes
+            // 
+            this.dgvReportes.AllowUserToAddRows = false;
+            this.dgvReportes.AllowUserToDeleteRows = false;
+            this.dgvReportes.AllowUserToResizeColumns = false;
+            this.dgvReportes.AllowUserToResizeRows = false;
+            this.dgvReportes.AutoGenerateColumns = false;
+            this.dgvReportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReportes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDLlamadaDataGridViewTextBoxColumn,
+            this.usuarioDataGridViewTextBoxColumn,
+            this.descripcionDataGridViewTextBoxColumn,
+            this.fechaDataGridViewTextBoxColumn,
+            this.horaInicioDataGridViewTextBoxColumn,
+            this.horaFinDataGridViewTextBoxColumn,
+            this.tiempoTotalDataGridViewTextBoxColumn,
+            this.iDDiaDataGridViewTextBoxColumn});
+            this.dgvReportes.DataSource = this.llamadasBindingSource;
+            this.dgvReportes.Location = new System.Drawing.Point(6, 72);
+            this.dgvReportes.Name = "dgvReportes";
+            this.dgvReportes.ReadOnly = true;
+            this.dgvReportes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvReportes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvReportes.Size = new System.Drawing.Size(555, 413);
+            this.dgvReportes.TabIndex = 3;
+            // 
+            // lblError3
+            // 
+            this.lblError3.AutoSize = true;
+            this.lblError3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblError3.Location = new System.Drawing.Point(13, 43);
+            this.lblError3.Name = "lblError3";
+            this.lblError3.Size = new System.Drawing.Size(67, 16);
+            this.lblError3.TabIndex = 4;
+            this.lblError3.Text = "Mensaje";
+            // 
+            // control_Llamadas_DataSet
+            // 
+            this.control_Llamadas_DataSet.DataSetName = "Control_Llamadas_DataSet";
+            this.control_Llamadas_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // llamadasBindingSource
+            // 
+            this.llamadasBindingSource.DataMember = "Llamadas";
+            this.llamadasBindingSource.DataSource = this.control_Llamadas_DataSet;
+            // 
+            // llamadasTableAdapter
+            // 
+            this.llamadasTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDLlamadaDataGridViewTextBoxColumn
+            // 
+            this.iDLlamadaDataGridViewTextBoxColumn.DataPropertyName = "ID_Llamada";
+            this.iDLlamadaDataGridViewTextBoxColumn.HeaderText = "ID_Llamada";
+            this.iDLlamadaDataGridViewTextBoxColumn.Name = "iDLlamadaDataGridViewTextBoxColumn";
+            this.iDLlamadaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usuarioDataGridViewTextBoxColumn
+            // 
+            this.usuarioDataGridViewTextBoxColumn.DataPropertyName = "Usuario";
+            this.usuarioDataGridViewTextBoxColumn.HeaderText = "Usuario";
+            this.usuarioDataGridViewTextBoxColumn.Name = "usuarioDataGridViewTextBoxColumn";
+            this.usuarioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            this.fechaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fechaDataGridViewTextBoxColumn.Width = 140;
+            // 
+            // horaInicioDataGridViewTextBoxColumn
+            // 
+            this.horaInicioDataGridViewTextBoxColumn.DataPropertyName = "Hora_Inicio";
+            this.horaInicioDataGridViewTextBoxColumn.HeaderText = "Hora_Inicio";
+            this.horaInicioDataGridViewTextBoxColumn.Name = "horaInicioDataGridViewTextBoxColumn";
+            this.horaInicioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // horaFinDataGridViewTextBoxColumn
+            // 
+            this.horaFinDataGridViewTextBoxColumn.DataPropertyName = "Hora_Fin";
+            this.horaFinDataGridViewTextBoxColumn.HeaderText = "Hora_Fin";
+            this.horaFinDataGridViewTextBoxColumn.Name = "horaFinDataGridViewTextBoxColumn";
+            this.horaFinDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tiempoTotalDataGridViewTextBoxColumn
+            // 
+            this.tiempoTotalDataGridViewTextBoxColumn.DataPropertyName = "Tiempo_Total";
+            this.tiempoTotalDataGridViewTextBoxColumn.HeaderText = "Tiempo_Total";
+            this.tiempoTotalDataGridViewTextBoxColumn.Name = "tiempoTotalDataGridViewTextBoxColumn";
+            this.tiempoTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // iDDiaDataGridViewTextBoxColumn
+            // 
+            this.iDDiaDataGridViewTextBoxColumn.DataPropertyName = "ID_Dia";
+            this.iDDiaDataGridViewTextBoxColumn.HeaderText = "ID_Dia";
+            this.iDDiaDataGridViewTextBoxColumn.Name = "iDDiaDataGridViewTextBoxColumn";
+            this.iDDiaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FormControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -715,6 +875,11 @@
             this.tpBuscar.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tpReportes.ResumeLayout(false);
+            this.tpReportes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReportes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.control_Llamadas_DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.llamadasBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -778,6 +943,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Dia;
+        private System.Windows.Forms.DateTimePicker dtpFecha3;
+        private System.Windows.Forms.Label lblReporte;
+        private System.Windows.Forms.Button btReporte;
+        private System.Windows.Forms.DataGridView dgvReportes;
+        private System.Windows.Forms.Label lblError3;
+        private Control_Llamadas_DataSet control_Llamadas_DataSet;
+        private System.Windows.Forms.BindingSource llamadasBindingSource;
+        private Control_Llamadas_DataSetTableAdapters.LlamadasTableAdapter llamadasTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDLlamadaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuarioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn horaInicioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn horaFinDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tiempoTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDiaDataGridViewTextBoxColumn;
     }
 }
 

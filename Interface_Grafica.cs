@@ -25,6 +25,7 @@ namespace Control_Llamadas
             InitializeComponent();
             dgvDatos.AutoGenerateColumns = false;
             this.RefrescarDatos();
+            this.RefrescarDatos2();
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = false;
             this.btModificar.Enabled = false;
@@ -36,6 +37,8 @@ namespace Control_Llamadas
         //Métodos no Utilizados.
         private void FormControl_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'control_Llamadas_DataSet.Llamadas' table. You can move, or remove it, as needed.
+            this.llamadasTableAdapter.Fill(this.control_Llamadas_DataSet.Llamadas);
             dtpFecha2.Value = DateTime.Today;
             lblfecha.Text = DateTime.Today.ToString("D");
         }
@@ -45,6 +48,14 @@ namespace Control_Llamadas
             using (ModeloContainer conexion = new ModeloContainer())
             {
                 this.dgvDatos.DataSource = conexion.Llamadas.ToList();
+            }
+        }
+
+        private void RefrescarDatos2()
+        {
+            using (ModeloContainer conexion = new ModeloContainer())
+            {
+                this.dgvReportes .DataSource = conexion.Llamadas.ToList();
             }
         }
 
@@ -325,16 +336,13 @@ namespace Control_Llamadas
                     return false;
                 }
             }
-            /*
-            if (string.IsNullOrEmpty(this.txtDescripcion.Text))
+
+            if (C.ConsecutivoRegistrado(Convert.ToInt32(this.txtConsecutivo.Text)) != 0)
             {
-                this.txtDescripcion.Text = "Ingrese una descripción a la llamada.";
+                this.lblError2.Text = "Para ese día ya existe una llamada con ese Consecutivo";
                 return false;
             }
-            if (string.IsNullOrEmpty(this.txtObservaciones.Text))
-            {
-                this.txtObservaciones.Text = "Sin Observaciones";
-            }*/
+
             return true;
         }
 

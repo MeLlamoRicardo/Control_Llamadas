@@ -14,6 +14,7 @@ namespace Control_Llamadas
     {
         SqlConnection cn;
         SqlCommand cmd;
+        SqlDataReader dr;
 
 
         public Conexion()
@@ -48,8 +49,6 @@ namespace Control_Llamadas
             return salida;
         }
 
-
-
         public int MaximoID()
         {
             int MaxID = 0;
@@ -59,6 +58,26 @@ namespace Control_Llamadas
                 MaxID = Convert.ToInt32(cmd.ExecuteScalar());
             }
             return MaxID;
+        }
+
+        public int ConsecutivoRegistrado(int ID_Dia)
+        {
+            int cont = 0;
+            try
+            {
+                cmd = new SqlCommand("Select * from Llamadas where ID_Dia="+ID_Dia+"", cn);
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    cont++;
+                }
+                dr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo consultar bien: " + ex.ToString());
+            }
+            return cont;
         }
 
     }

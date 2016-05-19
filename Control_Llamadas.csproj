@@ -58,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
+    <Compile Include="Control_Llamadas_DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Control_Llamadas_DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Interface_Grafica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +105,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Modelo.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Control_Llamadas_DataSet.xsc">
+      <DependentUpon>Control_Llamadas_DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Control_Llamadas_DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Control_Llamadas_DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Control_Llamadas_DataSet.xss">
+      <DependentUpon>Control_Llamadas_DataSet.xsd</DependentUpon>
+    </None>
     <None Include="Modelo.edmx.diagram">
       <DependentUpon>Modelo.edmx</DependentUpon>
     </None>
