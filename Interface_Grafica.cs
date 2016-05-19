@@ -27,6 +27,7 @@ namespace Control_Llamadas
             this.RefrescarDatos();
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = false;
+            this.btModificar.Enabled = false;
             //dgvDatos.EditMode = false;
         }
 
@@ -53,7 +54,7 @@ namespace Control_Llamadas
             this.lblfecha.Text = DateTime.Today.ToString("D");
             this.lblTiempoInicio.Text = "00:00:00";
             this.lblTiempoFin.Text = "00:00:00";
-            this.lblTiempoTotal.Text = "00:00:00";
+            this.lblTiempoTotal.Text = "0:0:0";
             this.txtObservaciones.Text = string.Empty;
             this.lblError.Text = string.Empty;
             this.btIniciar.Enabled = true;
@@ -67,13 +68,16 @@ namespace Control_Llamadas
 
         private void LimpiarCampos2()
         {
+            this.lblLlamadaID.Text = "Identificador de Llamada";
+            this.txtIDllamada.Text = string.Empty;
             this.txtNombreUsuario2.Text = string.Empty;
             this.txtDescripcion2.Text = string.Empty;
             this.dtpFecha2.Value = DateTime.Today;
             this.txtTiempoInicio.Text = string.Empty;
             this.txtTiempoFin.Text = string.Empty;
-            this.txtTotalMints.Text = string.Empty;
+            this.txtTiempoTotal.Text = string.Empty;
             this.txtObservaciones2.Text = string.Empty;
+            this.txtConsecutivo.Text = string.Empty;
         }
 
         private void btAgregar_Click(object sender, EventArgs e)
@@ -117,7 +121,40 @@ namespace Control_Llamadas
 
         private void btModificar_Click(object sender, EventArgs e)
         {
+            if (ValidarCampos())
+            {
+                using (ModeloContainer conexion = new ModeloContainer())
+                {
 
+                    int id = Convert.ToInt32(this.lblLlamadaID.Text);
+                    var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
+                    if (llamada == null)
+                    {
+                        MessageBox.Show("No es posible modificar, la llamada no existe.");
+                        LimpiarCampos2();
+                    }
+                    else
+                    {
+                        //Llamada llamada = new Llamada();
+                        llamada.ID_Llamada = Convert.ToInt32(this.lblLlamadaID.Text);
+                        llamada.Usuario = this.txtNombreUsuario2.Text;
+                        llamada.Descripcion = this.txtDescripcion2.Text;
+                        llamada.Observaciones = this.txtObservaciones2.Text;
+                        llamada.Fecha = this.dtpFecha2.Text;
+                        llamada.Hora_Inicio = this.txtTiempoInicio.Text;
+                        llamada.Hora_Fin = this.txtTiempoFin.Text;
+                        llamada.Tiempo_Total = this.txtTiempoTotal.Text;
+                        llamada.ID_Dia = Convert.ToInt32(this.txtConsecutivo.Text);
+
+                        //conexion.Llamadas.Add(llamada);
+                        //conexion.SaveChanges();                    
+                        MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Tiempo_Total, llamada.ID_Dia));
+                        //MessageBox.Show("Llamada Registrada");
+                        RefrescarDatos();
+                        LimpiarCampos();
+                    }
+                }
+            }
         }
 
         private void btEliminar_Click(object sender, EventArgs e)
@@ -172,13 +209,17 @@ namespace Control_Llamadas
                     }
                     else
                     {
+                        LimpiarCampos2();
+                        this.lblLlamadaID.Text = Convert.ToString(llamada.ID_Llamada);
                         this.txtNombreUsuario2.Text = llamada.Usuario;
                         this.txtDescripcion2.Text = llamada.Descripcion;
                         this.dtpFecha2.Text = llamada.Fecha;
                         this.txtTiempoInicio.Text = llamada.Hora_Inicio;
                         this.txtTiempoFin.Text = llamada.Hora_Fin;
-                        this.txtTotalMints.Text = llamada.Tiempo_Total;
+                        this.txtTiempoTotal.Text = llamada.Tiempo_Total;
                         this.txtObservaciones2.Text = llamada.Observaciones;
+                        this.txtConsecutivo.Text = Convert.ToString(llamada.ID_Dia);
+                        this.btModificar.Enabled = true;
                     }
                 }
             }
@@ -197,18 +238,18 @@ namespace Control_Llamadas
 
         private void btIniciar_Click(object sender, EventArgs e)
         {
-            this.lblTiempoInicio.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
             timerHoras.Start();
+            this.lblTiempoInicio.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
             this.btFinalizar.Enabled = true;
             this.btIniciar.Enabled = false;
         }
 
         private void btFinalizar_Click(object sender, EventArgs e)
         {
+            timerHoras.Stop();
             this.lblTiempoFin.Text = DateTime.Now.ToString("T", CultureInfo.CreateSpecificCulture("es-MX"));
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = true;
-            timerHoras.Stop();
         }
 
         private bool ValidarCampos()
@@ -356,6 +397,11 @@ namespace Control_Llamadas
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btLimpiarCampos2_Click(object sender, EventArgs e)
+        {
+            this.LimpiarCampos2();
         }
 
         private void tpAgregar_Click(object sender, EventArgs e)
