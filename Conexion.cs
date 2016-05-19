@@ -32,12 +32,13 @@ namespace Control_Llamadas
 
 
 
-        public string insertar( string usuario, string descripcion, string observaciones, string fecha, string horaInicio, string horaFin, string tiempoTotal, int idDia)
+        public string insertar(string usuario, string descripcion, string observaciones, string fecha, string horaInicio, string horaFin, string tiempoTotal, int idDia)
         {
             string salida = "Si se insertó";
             try
             {
-                cmd = new SqlCommand("Insert into Llamadas(Usuario,Descripcion,Observaciones,Fecha,Hora_Inicio,Hora_Fin,Tiempo_Total,ID_Dia) values('"+usuario+ "','" + descripcion+ "','" + observaciones + "','" + fecha + "' ,'" + horaInicio + "', '" + horaFin + "','" + tiempoTotal + "'," + idDia+" )", cn);
+                cmd = new SqlCommand("Insert into Llamadas(Usuario,Descripcion,Observaciones,Fecha,Hora_Inicio,Hora_Fin,Tiempo_Total,ID_Dia) values('" + usuario + "','" + descripcion + "','" + observaciones + "','" + fecha + "' ,'" + horaInicio + "', '" + horaFin + "','" + tiempoTotal + "'," + idDia + " )", cn);
+                //cmd.Parameters.AddWithValue("@Auxiliar");
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -48,21 +49,17 @@ namespace Control_Llamadas
         }
 
 
-        /*
-        public int LlamadaReistrada(int id)
+
+        public int MaximoID()
         {
-            string salida = "Si se insertó";
-            try
+            int MaxID = 0;
+            cmd = new SqlCommand("SELECT MAX(ID_Llamada) from Llamadas;", cn);
+            if (!DBNull.Value.Equals(cmd.ExecuteScalar()))
             {
-                cmd = new SqlCommand("Insert into Llamadas(Usuario,Descripcion,Observaciones,Fecha,Hora_Inicio,Hora_Fin,Total_Minutos,ID_Dia) values('" + usuario + "','" + descripcion + "','" + observaciones + "', '" + fecha + "' ,'" + horaInicio + "', '" + horaFin + "','" + totalMints + "'," + idDia + " )", cn);
-                cmd.ExecuteNonQuery();
+                MaxID = Convert.ToInt32(cmd.ExecuteScalar());
             }
-            catch (Exception ex)
-            {
-                salida = "No se conectó: " + ex.ToString();
-            }
-            return salida;
+            return MaxID;
         }
-        */
+
     }
 }

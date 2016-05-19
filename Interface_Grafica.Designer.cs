@@ -50,11 +50,6 @@
             this.btEliminar = new System.Windows.Forms.Button();
             this.btBuscar = new System.Windows.Forms.Button();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
-            this.ID_Llamada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcPaginas = new System.Windows.Forms.TabControl();
             this.tpAgregar = new System.Windows.Forms.TabPage();
             this.btLimpiarCampos = new System.Windows.Forms.Button();
@@ -91,6 +86,12 @@
             this.lblIDllamada = new System.Windows.Forms.Label();
             this.tpReportes = new System.Windows.Forms.TabPage();
             this.timerHoras = new System.Windows.Forms.Timer(this.components);
+            this.lblError2 = new System.Windows.Forms.Label();
+            this.ID_Llamada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.tcPaginas.SuspendLayout();
             this.tpAgregar.SuspendLayout();
@@ -219,7 +220,7 @@
             // 
             // btEliminar
             // 
-            this.btEliminar.Location = new System.Drawing.Point(479, 24);
+            this.btEliminar.Location = new System.Drawing.Point(484, 6);
             this.btEliminar.Name = "btEliminar";
             this.btEliminar.Size = new System.Drawing.Size(75, 25);
             this.btEliminar.TabIndex = 13;
@@ -229,7 +230,7 @@
             // 
             // btBuscar
             // 
-            this.btBuscar.Location = new System.Drawing.Point(398, 24);
+            this.btBuscar.Location = new System.Drawing.Point(403, 6);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(75, 25);
             this.btBuscar.TabIndex = 15;
@@ -250,50 +251,11 @@
             this.Descripcion,
             this.Fecha,
             this.ID_Dia});
-            this.dgvDatos.Location = new System.Drawing.Point(16, 53);
+            this.dgvDatos.Location = new System.Drawing.Point(10, 35);
             this.dgvDatos.Name = "dgvDatos";
-            this.dgvDatos.Size = new System.Drawing.Size(537, 140);
+            this.dgvDatos.Size = new System.Drawing.Size(548, 140);
             this.dgvDatos.TabIndex = 17;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
-            // 
-            // ID_Llamada
-            // 
-            this.ID_Llamada.DataPropertyName = "ID_Llamada";
-            this.ID_Llamada.HeaderText = "ID";
-            this.ID_Llamada.Name = "ID_Llamada";
-            this.ID_Llamada.ReadOnly = true;
-            this.ID_Llamada.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ID_Llamada.Width = 50;
-            // 
-            // Usuario
-            // 
-            this.Usuario.DataPropertyName = "Usuario";
-            this.Usuario.HeaderText = "Usuario";
-            this.Usuario.Name = "Usuario";
-            this.Usuario.ReadOnly = true;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "Descripcion";
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.DataPropertyName = "Fecha";
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            this.Fecha.Width = 140;
-            // 
-            // ID_Dia
-            // 
-            this.ID_Dia.DataPropertyName = "ID_Dia";
-            this.ID_Dia.HeaderText = "Consecutivo";
-            this.ID_Dia.Name = "ID_Dia";
-            this.ID_Dia.ReadOnly = true;
-            this.ID_Dia.Width = 85;
             // 
             // tcPaginas
             // 
@@ -303,7 +265,7 @@
             this.tcPaginas.Location = new System.Drawing.Point(12, 12);
             this.tcPaginas.Name = "tcPaginas";
             this.tcPaginas.SelectedIndex = 0;
-            this.tcPaginas.Size = new System.Drawing.Size(572, 507);
+            this.tcPaginas.Size = new System.Drawing.Size(572, 516);
             this.tcPaginas.TabIndex = 18;
             // 
             // tpAgregar
@@ -320,7 +282,7 @@
             this.tpAgregar.Location = new System.Drawing.Point(4, 22);
             this.tpAgregar.Name = "tpAgregar";
             this.tpAgregar.Padding = new System.Windows.Forms.Padding(3);
-            this.tpAgregar.Size = new System.Drawing.Size(564, 481);
+            this.tpAgregar.Size = new System.Drawing.Size(564, 490);
             this.tpAgregar.TabIndex = 0;
             this.tpAgregar.Text = "Registro de Llamadas";
             this.tpAgregar.UseVisualStyleBackColor = true;
@@ -341,7 +303,7 @@
             // 
             this.lblError.AutoSize = true;
             this.lblError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblError.Location = new System.Drawing.Point(48, 247);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(0, 20);
@@ -430,6 +392,7 @@
             // 
             // tpBuscar
             // 
+            this.tpBuscar.Controls.Add(this.lblError2);
             this.tpBuscar.Controls.Add(this.panel2);
             this.tpBuscar.Controls.Add(this.txtIDllamada);
             this.tpBuscar.Controls.Add(this.btEliminar);
@@ -439,7 +402,7 @@
             this.tpBuscar.Location = new System.Drawing.Point(4, 22);
             this.tpBuscar.Name = "tpBuscar";
             this.tpBuscar.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBuscar.Size = new System.Drawing.Size(564, 481);
+            this.tpBuscar.Size = new System.Drawing.Size(564, 490);
             this.tpBuscar.TabIndex = 1;
             this.tpBuscar.Text = "Buscar";
             this.tpBuscar.UseVisualStyleBackColor = true;
@@ -467,7 +430,7 @@
             this.panel2.Controls.Add(this.lblDescripcion2);
             this.panel2.Controls.Add(this.txtTiempoInicio);
             this.panel2.Controls.Add(this.lblNombreUsuario2);
-            this.panel2.Location = new System.Drawing.Point(10, 199);
+            this.panel2.Location = new System.Drawing.Point(10, 181);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(548, 276);
             this.panel2.TabIndex = 42;
@@ -651,7 +614,7 @@
             // 
             // txtIDllamada
             // 
-            this.txtIDllamada.Location = new System.Drawing.Point(120, 26);
+            this.txtIDllamada.Location = new System.Drawing.Point(125, 8);
             this.txtIDllamada.Name = "txtIDllamada";
             this.txtIDllamada.Size = new System.Drawing.Size(272, 20);
             this.txtIDllamada.TabIndex = 37;
@@ -659,7 +622,7 @@
             // lblIDllamada
             // 
             this.lblIDllamada.AutoSize = true;
-            this.lblIDllamada.Location = new System.Drawing.Point(7, 29);
+            this.lblIDllamada.Location = new System.Drawing.Point(12, 11);
             this.lblIDllamada.Name = "lblIDllamada";
             this.lblIDllamada.Size = new System.Drawing.Size(81, 13);
             this.lblIDllamada.TabIndex = 36;
@@ -678,6 +641,57 @@
             // 
             this.timerHoras.Interval = 1000;
             this.timerHoras.Tick += new System.EventHandler(this.timerMints_Tick);
+            // 
+            // lblError2
+            // 
+            this.lblError2.AutoSize = true;
+            this.lblError2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblError2.Location = new System.Drawing.Point(20, 460);
+            this.lblError2.Name = "lblError2";
+            this.lblError2.Size = new System.Drawing.Size(51, 16);
+            this.lblError2.TabIndex = 43;
+            this.lblError2.Text = "label1";
+            // 
+            // ID_Llamada
+            // 
+            this.ID_Llamada.DataPropertyName = "ID_Llamada";
+            this.ID_Llamada.HeaderText = "ID";
+            this.ID_Llamada.Name = "ID_Llamada";
+            this.ID_Llamada.ReadOnly = true;
+            this.ID_Llamada.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ID_Llamada.Width = 45;
+            // 
+            // Usuario
+            // 
+            this.Usuario.DataPropertyName = "Usuario";
+            this.Usuario.HeaderText = "Usuario";
+            this.Usuario.Name = "Usuario";
+            this.Usuario.ReadOnly = true;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.DataPropertyName = "Descripcion";
+            this.Descripcion.HeaderText = "Descripcion";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 110;
+            // 
+            // Fecha
+            // 
+            this.Fecha.DataPropertyName = "Fecha";
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            this.Fecha.Width = 160;
+            // 
+            // ID_Dia
+            // 
+            this.ID_Dia.DataPropertyName = "ID_Dia";
+            this.ID_Dia.HeaderText = "Consecutivo";
+            this.ID_Dia.Name = "ID_Dia";
+            this.ID_Dia.ReadOnly = true;
+            this.ID_Dia.Width = 70;
             // 
             // FormControl
             // 
@@ -758,12 +772,13 @@
         private System.Windows.Forms.Label lblLlamadaID;
         private System.Windows.Forms.Label lblLlamada;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btLimpiarCampos2;
+        private System.Windows.Forms.Label lblError2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Llamada;
         private System.Windows.Forms.DataGridViewTextBoxColumn Usuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Dia;
-        private System.Windows.Forms.Button btLimpiarCampos2;
     }
 }
 

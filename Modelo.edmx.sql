@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/16/2016 21:20:14
+-- Date Created: 05/18/2016 22:38:51
 -- Generated from EDMX file: C:\Users\HP\documents\visual studio 2015\Projects\Control_Llamadas\Control_Llamadas\Modelo.edmx
 -- --------------------------------------------------
 
@@ -32,7 +32,7 @@ GO
 
 -- Creating table 'Llamadas'
 CREATE TABLE [dbo].[Llamadas] (
-    [ID_Llamada] int  NOT NULL IDENTITY(1,1),
+    [ID_Llamada] int  NOT NULL Identity(1,1),
     [Usuario] nvarchar(max)  NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
     [Observaciones] nvarchar(max)  NOT NULL,

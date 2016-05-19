@@ -28,7 +28,6 @@ namespace Control_Llamadas
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = false;
             this.btModificar.Enabled = false;
-            //dgvDatos.EditMode = false;
         }
 
 
@@ -78,6 +77,7 @@ namespace Control_Llamadas
             this.txtTiempoTotal.Text = string.Empty;
             this.txtObservaciones2.Text = string.Empty;
             this.txtConsecutivo.Text = string.Empty;
+            this.btModificar.Enabled = false;
         }
 
         private void btAgregar_Click(object sender, EventArgs e)
@@ -90,18 +90,27 @@ namespace Control_Llamadas
                 llamada.Descripcion = this.txtDescripcion.Text;
                 llamada.Observaciones = this.txtObservaciones.Text;
                 llamada.Fecha = this.lblfecha.Text;
-                //Value.ToString("g", CultureInfo.CreateSpecificCulture("es-MX"));
                 llamada.Hora_Inicio = this.lblTiempoInicio.Text;
                 llamada.Hora_Fin = this.lblTiempoFin.Text;
                 llamada.Tiempo_Total = this.lblTiempoTotal.Text;
                 llamada.ID_Dia = 1;
+                //llamada.Auxiliar = DateTime.Now;
 
                 using (ModeloContainer conexion = new ModeloContainer())
                 {
+                    //conexion.Llamadas.Select()
                     //conexion.Llamadas.Add(llamada);
-                    //conexion.SaveChanges();                    
-                    MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Tiempo_Total, llamada.ID_Dia));
-                    //MessageBox.Show("Llamada Registrada");
+                    //conexion.SaveChanges();    
+
+                    if (C.MaximoID() == 0)
+                    {
+                        MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Tiempo_Total, llamada.ID_Dia));
+                    }
+                    else
+                    {
+                        llamada.ID_Dia = this.ConsecutivoDia();
+                        MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Tiempo_Total, llamada.ID_Dia));
+                    }
                     RefrescarDatos();
                     LimpiarCampos();
                 }
@@ -111,49 +120,56 @@ namespace Control_Llamadas
 
         private int ConsecutivoDia()
         {
-            int consecutivo = 1;
+            int consecutivo = 0;
             using (ModeloContainer conexion = new ModeloContainer())
             {
-                //if (conexion.Llamadas.ToList() == null) { }
+                int id = C.MaximoID();
+                var llamadaAux = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
+                if (llamadaAux.Fecha.Equals(DateTime.Today.ToString("D"), StringComparison.OrdinalIgnoreCase))
+                {
+                    consecutivo = llamadaAux.ID_Dia + 1;
+                }
+                else
+                {
+                    consecutivo = 1;
+                }
             }
             return consecutivo;
         }
 
         private void btModificar_Click(object sender, EventArgs e)
         {
-            if (ValidarCampos())
+            //if (ValidarCampos())
+            //{
+            using (ModeloContainer conexion = new ModeloContainer())
             {
-                using (ModeloContainer conexion = new ModeloContainer())
-                {
 
-                    int id = Convert.ToInt32(this.lblLlamadaID.Text);
-                    var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
-                    if (llamada == null)
-                    {
-                        MessageBox.Show("No es posible modificar, la llamada no existe.");
-                        LimpiarCampos2();
-                    }
-                    else
-                    {
-                        //Llamada llamada = new Llamada();
-                        llamada.ID_Llamada = Convert.ToInt32(this.lblLlamadaID.Text);
-                        llamada.Usuario = this.txtNombreUsuario2.Text;
-                        llamada.Descripcion = this.txtDescripcion2.Text;
-                        llamada.Observaciones = this.txtObservaciones2.Text;
-                        llamada.Fecha = this.dtpFecha2.Text;
-                        llamada.Hora_Inicio = this.txtTiempoInicio.Text;
-                        llamada.Hora_Fin = this.txtTiempoFin.Text;
-                        llamada.Tiempo_Total = this.txtTiempoTotal.Text;
-                        llamada.ID_Dia = Convert.ToInt32(this.txtConsecutivo.Text);
-
-                        //conexion.Llamadas.Add(llamada);
-                        //conexion.SaveChanges();                    
-                        MessageBox.Show(C.insertar(llamada.Usuario, llamada.Descripcion, llamada.Observaciones, llamada.Fecha, llamada.Hora_Inicio, llamada.Hora_Fin, llamada.Tiempo_Total, llamada.ID_Dia));
-                        //MessageBox.Show("Llamada Registrada");
-                        RefrescarDatos();
-                        LimpiarCampos();
-                    }
-                }
+                int id = Convert.ToInt32(this.lblLlamadaID.Text);
+                var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
+                //if (llamada == null)
+                //{
+                // MessageBox.Show("No es posible modificar, la llamada no existe.");
+                //LimpiarCampos2();
+                //}
+                //else
+                //{
+                //Llamada llamada = new Llamada();
+                //llamada.ID_Llamada = Convert.ToInt32(this.lblLlamadaID.Text);
+                llamada.Usuario = this.txtNombreUsuario2.Text;
+                llamada.Descripcion = this.txtDescripcion2.Text;
+                llamada.Observaciones = this.txtObservaciones2.Text;
+                llamada.Fecha = this.dtpFecha2.Text;
+                llamada.Hora_Inicio = this.txtTiempoInicio.Text;
+                llamada.Hora_Fin = this.txtTiempoFin.Text;
+                llamada.Tiempo_Total = this.txtTiempoTotal.Text;
+                llamada.ID_Dia = Convert.ToInt32(this.txtConsecutivo.Text);
+                conexion.SaveChanges();
+                MessageBox.Show("Llamada Modificada");
+                RefrescarDatos();
+                LimpiarCampos2();
+                this.btModificar.Enabled = false;
+                //}
+                //}
             }
         }
 
@@ -209,6 +225,7 @@ namespace Control_Llamadas
                     }
                     else
                     {
+                        //if (llamada.Fecha == DateTime.Today.ToString());
                         LimpiarCampos2();
                         this.lblLlamadaID.Text = Convert.ToString(llamada.ID_Llamada);
                         this.txtNombreUsuario2.Text = llamada.Usuario;
@@ -220,6 +237,7 @@ namespace Control_Llamadas
                         this.txtObservaciones2.Text = llamada.Observaciones;
                         this.txtConsecutivo.Text = Convert.ToString(llamada.ID_Dia);
                         this.btModificar.Enabled = true;
+                        //llamada.Llamada_Modificada.
                     }
                 }
             }
@@ -257,6 +275,38 @@ namespace Control_Llamadas
             if (string.IsNullOrEmpty(this.txtNombreUsuario.Text) && string.IsNullOrEmpty(this.txtDescripcion.Text))
             {
                 this.lblError.Text = "Ingrese el nombre de la persona que llama y una descripción.";
+                return false;
+            }
+            else
+                if (string.IsNullOrEmpty(this.txtNombreUsuario.Text))
+            {
+                this.lblError.Text = "Ingrese el nombre de la persona que llama ";
+                return false;
+            }
+            else
+                if (string.IsNullOrEmpty(this.txtDescripcion.Text))
+            {
+                this.lblError.Text = "Ingrese una descripción a la llamada.";
+                return false;
+            }
+            /*
+            if (string.IsNullOrEmpty(this.txtDescripcion.Text))
+            {
+                this.txtDescripcion.Text = "Ingrese una descripción a la llamada.";
+                return false;
+            }
+            if (string.IsNullOrEmpty(this.txtObservaciones.Text))
+            {
+                this.txtObservaciones.Text = "Sin Observaciones";
+            }*/
+            return true;
+        }
+
+        private bool ValidarCampos2()
+        {
+            if (string.IsNullOrEmpty(this.txtNombreUsuario2.Text) && string.IsNullOrEmpty(this.txtDescripcion2.Text))
+            {
+                this.lblError2.Text = "La llamada debe el nombre de la persona que llama y una descripción.";
                 return false;
             }
             else

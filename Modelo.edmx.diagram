@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2a73b3484351413487660eaa57d732eb" Name="Diagram1" >
-        <EntityTypeShape EntityType="Modelo.Llamada" Width="2" PointX="4.875" PointY="1" FillColor="Blue" />
+        <EntityTypeShape EntityType="Modelo.Llamada" Width="2" PointX="7.625" PointY="2.375" FillColor="Blue" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
