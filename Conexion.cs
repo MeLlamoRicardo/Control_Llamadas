@@ -14,7 +14,7 @@ namespace Control_Llamadas
     {
         SqlConnection cn;
         SqlCommand cmd;
-        SqlDataReader dr;
+
 
         public Conexion()
         {
@@ -34,7 +34,7 @@ namespace Control_Llamadas
 
         public string insertar(string usuario, string descripcion, string observaciones, string fecha, string horaInicio, string horaFin, string tiempoTotal, int idDia)
         {
-            string salida = "Si se insertó";
+            string salida = "Se logró insertar la llamada con éxto.";
             try
             {
                 cmd = new SqlCommand("Insert into Llamadas(Usuario,Descripcion,Observaciones,Fecha,Hora_Inicio,Hora_Fin,Tiempo_Total,ID_Dia) values('" + usuario + "','" + descripcion + "','" + observaciones + "','" + fecha + "' ,'" + horaInicio + "', '" + horaFin + "','" + tiempoTotal + "'," + idDia + " )", cn);
@@ -43,7 +43,7 @@ namespace Control_Llamadas
             }
             catch (Exception ex)
             {
-                salida = "No se conectó: " + ex.ToString();
+                salida = "No se logró insertar " + ex.ToString();
             }
             return salida;
         }

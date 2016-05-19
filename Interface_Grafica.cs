@@ -28,6 +28,7 @@ namespace Control_Llamadas
             this.btFinalizar.Enabled = false;
             this.btInsertar.Enabled = false;
             this.btModificar.Enabled = false;
+
         }
 
 
@@ -35,6 +36,7 @@ namespace Control_Llamadas
         //Métodos no Utilizados.
         private void FormControl_Load(object sender, EventArgs e)
         {
+            dtpFecha2.Value = DateTime.Today;
             lblfecha.Text = DateTime.Today.ToString("D");
         }
 
@@ -78,6 +80,7 @@ namespace Control_Llamadas
             this.txtObservaciones2.Text = string.Empty;
             this.txtConsecutivo.Text = string.Empty;
             this.btModificar.Enabled = false;
+            this.lblError2.Text = string.Empty;
         }
 
         private void btAgregar_Click(object sender, EventArgs e)
@@ -139,37 +142,27 @@ namespace Control_Llamadas
 
         private void btModificar_Click(object sender, EventArgs e)
         {
-            //if (ValidarCampos())
-            //{
-            using (ModeloContainer conexion = new ModeloContainer())
+            if (ValidarCampos2())
             {
+                using (ModeloContainer conexion = new ModeloContainer())
+                {
 
-                int id = Convert.ToInt32(this.lblLlamadaID.Text);
-                var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
-                //if (llamada == null)
-                //{
-                // MessageBox.Show("No es posible modificar, la llamada no existe.");
-                //LimpiarCampos2();
-                //}
-                //else
-                //{
-                //Llamada llamada = new Llamada();
-                //llamada.ID_Llamada = Convert.ToInt32(this.lblLlamadaID.Text);
-                llamada.Usuario = this.txtNombreUsuario2.Text;
-                llamada.Descripcion = this.txtDescripcion2.Text;
-                llamada.Observaciones = this.txtObservaciones2.Text;
-                llamada.Fecha = this.dtpFecha2.Text;
-                llamada.Hora_Inicio = this.txtTiempoInicio.Text;
-                llamada.Hora_Fin = this.txtTiempoFin.Text;
-                llamada.Tiempo_Total = this.txtTiempoTotal.Text;
-                llamada.ID_Dia = Convert.ToInt32(this.txtConsecutivo.Text);
-                conexion.SaveChanges();
-                MessageBox.Show("Llamada Modificada");
-                RefrescarDatos();
-                LimpiarCampos2();
-                this.btModificar.Enabled = false;
-                //}
-                //}
+                    int id = Convert.ToInt32(this.lblLlamadaID.Text);
+                    var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
+                    llamada.Usuario = this.txtNombreUsuario2.Text;
+                    llamada.Descripcion = this.txtDescripcion2.Text;
+                    llamada.Observaciones = this.txtObservaciones2.Text;
+                    llamada.Fecha = this.dtpFecha2.Text;
+                    llamada.Hora_Inicio = this.txtTiempoInicio.Text;
+                    llamada.Hora_Fin = this.txtTiempoFin.Text;
+                    llamada.Tiempo_Total = this.txtTiempoTotal.Text;
+                    llamada.ID_Dia = Convert.ToInt32(this.txtConsecutivo.Text);
+                    conexion.SaveChanges();
+                    MessageBox.Show("La Llamada ha sido modificado con éxito.");
+                    RefrescarDatos();
+                    LimpiarCampos2();
+                    this.btModificar.Enabled = false;
+                }
             }
         }
 
@@ -179,8 +172,8 @@ namespace Control_Llamadas
             {
                 if (string.IsNullOrEmpty(this.txtIDllamada.Text))
                 {
-                    MessageBox.Show("Ingrese el ID de la la llamada a eliminar.");
                     LimpiarCampos2();
+                    this.lblError2.Text = "Ingrese el ID de la la llamada a eliminar.";
                 }
                 else
                 {
@@ -188,8 +181,8 @@ namespace Control_Llamadas
                     var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
                     if (llamada == null)
                     {
-                        MessageBox.Show("No existe llamada con el ID introducido.");
                         LimpiarCampos2();
+                        this.lblError2.Text = "No existe llamada con el ID introducido.";
                     }
                     else
                     {
@@ -211,8 +204,8 @@ namespace Control_Llamadas
             {
                 if (string.IsNullOrEmpty(this.txtIDllamada.Text))
                 {
-                    MessageBox.Show("Ingrese el ID de la la llamada a consultar");
                     LimpiarCampos2();
+                    this.lblError2.Text = "Ingrese el ID de la la llamada a consultar";
                 }
                 else
                 {
@@ -220,12 +213,11 @@ namespace Control_Llamadas
                     var llamada = conexion.Llamadas.Where(p => p.ID_Llamada == id).FirstOrDefault();
                     if (llamada == null)
                     {
-                        MessageBox.Show("No existe la llamada con el ID introducido.");
                         LimpiarCampos2();
+                        this.lblError2.Text = "No existe la llamada con el ID introducido.";
                     }
                     else
                     {
-                        //if (llamada.Fecha == DateTime.Today.ToString());
                         LimpiarCampos2();
                         this.lblLlamadaID.Text = Convert.ToString(llamada.ID_Llamada);
                         this.txtNombreUsuario2.Text = llamada.Usuario;
@@ -237,7 +229,7 @@ namespace Control_Llamadas
                         this.txtObservaciones2.Text = llamada.Observaciones;
                         this.txtConsecutivo.Text = Convert.ToString(llamada.ID_Dia);
                         this.btModificar.Enabled = true;
-                        //llamada.Llamada_Modificada.
+
                     }
                 }
             }
@@ -306,20 +298,32 @@ namespace Control_Llamadas
         {
             if (string.IsNullOrEmpty(this.txtNombreUsuario2.Text) && string.IsNullOrEmpty(this.txtDescripcion2.Text))
             {
-                this.lblError2.Text = "La llamada debe el nombre de la persona que llama y una descripción.";
+                this.lblError2.Text = "La llamada debe tener el nombre de la persona que llama y una descripción.";
                 return false;
             }
             else
-                if (string.IsNullOrEmpty(this.txtNombreUsuario.Text))
+                if (string.IsNullOrEmpty(this.txtNombreUsuario2.Text))
             {
-                this.lblError.Text = "Ingrese el nombre de la persona que llama ";
+                this.lblError2.Text = "Ingrese el nombre de la persona que llama ";
                 return false;
             }
             else
-                if (string.IsNullOrEmpty(this.txtDescripcion.Text))
+                if (string.IsNullOrEmpty(this.txtDescripcion2.Text))
             {
-                this.lblError.Text = "Ingrese una descripción a la llamada.";
+                this.lblError2.Text = "Ingrese una descripción a la llamada.";
                 return false;
+            }
+            else
+            {
+                try
+                {
+                    int aux = Convert.ToInt32(this.txtConsecutivo.Text);
+                }
+                catch (Exception ex)
+                {
+                    this.lblError2.Text = "El consecutivo de llamada por día debe ser un número.";
+                    return false;
+                }
             }
             /*
             if (string.IsNullOrEmpty(this.txtDescripcion.Text))

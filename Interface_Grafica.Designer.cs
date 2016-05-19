@@ -323,9 +323,9 @@
             this.panel1.Controls.Add(this.lblInicio);
             this.panel1.Controls.Add(this.btIniciar);
             this.panel1.Controls.Add(this.btInsertar);
-            this.panel1.Location = new System.Drawing.Point(39, 89);
+            this.panel1.Location = new System.Drawing.Point(19, 89);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(500, 155);
+            this.panel1.Size = new System.Drawing.Size(539, 155);
             this.panel1.TabIndex = 23;
             // 
             // lblfecha
@@ -341,7 +341,7 @@
             // 
             this.lblTiempoTotal.AutoSize = true;
             this.lblTiempoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblTiempoTotal.Location = new System.Drawing.Point(174, 118);
+            this.lblTiempoTotal.Location = new System.Drawing.Point(201, 118);
             this.lblTiempoTotal.Name = "lblTiempoTotal";
             this.lblTiempoTotal.Size = new System.Drawing.Size(44, 20);
             this.lblTiempoTotal.TabIndex = 21;
@@ -404,7 +404,7 @@
             this.tpBuscar.Padding = new System.Windows.Forms.Padding(3);
             this.tpBuscar.Size = new System.Drawing.Size(564, 490);
             this.tpBuscar.TabIndex = 1;
-            this.tpBuscar.Text = "Buscar";
+            this.tpBuscar.Text = "Buscar/Modificar/Eliminar";
             this.tpBuscar.UseVisualStyleBackColor = true;
             // 
             // panel2
@@ -461,9 +461,9 @@
             this.lblLlamadaID.AutoSize = true;
             this.lblLlamadaID.Location = new System.Drawing.Point(119, 12);
             this.lblLlamadaID.Name = "lblLlamadaID";
-            this.lblLlamadaID.Size = new System.Drawing.Size(119, 13);
+            this.lblLlamadaID.Size = new System.Drawing.Size(123, 13);
             this.lblLlamadaID.TabIndex = 41;
-            this.lblLlamadaID.Text = "Identificador de llamada";
+            this.lblLlamadaID.Text = "Identificador de Llamada";
             this.lblLlamadaID.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtDescripcion2
@@ -573,7 +573,7 @@
             this.dtpFecha2.Name = "dtpFecha2";
             this.dtpFecha2.Size = new System.Drawing.Size(219, 20);
             this.dtpFecha2.TabIndex = 32;
-            this.dtpFecha2.Value = new System.DateTime(2016, 5, 14, 17, 49, 46, 0);
+            this.dtpFecha2.Value = new System.DateTime(2016, 5, 19, 2, 58, 26, 0);
             this.dtpFecha2.ValueChanged += new System.EventHandler(this.dtpFecha2_ValueChanged);
             // 
             // txtTiempoFin
@@ -632,7 +632,7 @@
             // 
             this.tpReportes.Location = new System.Drawing.Point(4, 22);
             this.tpReportes.Name = "tpReportes";
-            this.tpReportes.Size = new System.Drawing.Size(564, 481);
+            this.tpReportes.Size = new System.Drawing.Size(564, 490);
             this.tpReportes.TabIndex = 2;
             this.tpReportes.Text = "Reportes";
             this.tpReportes.UseVisualStyleBackColor = true;
@@ -649,9 +649,8 @@
             this.lblError2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblError2.Location = new System.Drawing.Point(20, 460);
             this.lblError2.Name = "lblError2";
-            this.lblError2.Size = new System.Drawing.Size(51, 16);
+            this.lblError2.Size = new System.Drawing.Size(0, 16);
             this.lblError2.TabIndex = 43;
-            this.lblError2.Text = "label1";
             // 
             // ID_Llamada
             // 
@@ -699,11 +698,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(591, 531);
             this.Controls.Add(this.tcPaginas);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(607, 570);
             this.MinimumSize = new System.Drawing.Size(607, 570);
             this.Name = "FormControl";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema de Control de Llamadas";
             this.Load += new System.EventHandler(this.FormControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
